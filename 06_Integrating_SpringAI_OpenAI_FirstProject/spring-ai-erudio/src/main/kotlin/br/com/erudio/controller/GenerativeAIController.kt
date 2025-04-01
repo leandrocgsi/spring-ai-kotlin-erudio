@@ -11,4 +11,9 @@ class GenerativeAIController (private val chatService: ChatService) {
     fun askAi(prompt: String?): String? {
         return chatService.getResponse(prompt);
     }
+
+    @GetMapping("ask-ai-options")
+    fun askAiWithOptions(prompt: String?): String? {
+        return chatService.getResponseWithOptions(prompt);
+    }
 }
