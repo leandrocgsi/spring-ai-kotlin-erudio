@@ -1,7 +1,9 @@
 package br.com.erudio.controller
 
 import br.com.erudio.service.ChatService
+import br.com.erudio.service.ImageService
 import br.com.erudio.service.RecipeService
+import org.springframework.ai.image.ImageGeneration
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
@@ -9,7 +11,8 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class GenerativeAIController (
         private val chatService: ChatService,
-        private val recipeService: RecipeService
+        private val recipeService: RecipeService,
+        private val imageService: ImageService
     ) {
 
     @GetMapping("ask-ai")
@@ -33,5 +36,20 @@ class GenerativeAIController (
         }
 
         return recipeService.createRecipe(ingredients, cuisine, dietaryRestrictions);
+    }
+
+    @GetMapping("generate-image")
+    fun generateImage(
+            @RequestParam prompt: String,
+            @RequestParam(defaultValue = "hd") quality: String?,
+            @RequestParam(defaultValue = "1") n: Int?,
+            @RequestParam(defaultValue = "1024") height: Int?,
+            @RequestParam(defaultValue = "1024") width: Int?
+    ): MutableList<String?> {
+        val response = imageService.generateImage(prompt, quality, n, height, width)!!
+        val imageUrls = response.results.stream()
+            .map {result: ImageGeneration -> result.output.url}
+            .toList()
+        return imageUrls;
     }
 }
