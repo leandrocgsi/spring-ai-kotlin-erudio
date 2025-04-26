@@ -1,5 +1,0 @@
-CREATE TABLE share (
-  id INT PRIMARY KEY AUTO_INCREMENT,
-  company VARCHAR(255),
-  quantity INT
-);
