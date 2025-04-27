@@ -1,8 +1,8 @@
 package br.com.erudio.service
 
 import org.springframework.ai.chat.model.ChatModel
+import org.springframework.ai.chat.prompt.ChatOptions
 import org.springframework.ai.chat.prompt.Prompt
-import org.springframework.ai.openai.OpenAiChatOptions
 import org.springframework.stereotype.Service
 
 
@@ -17,8 +17,8 @@ class ChatService (private val chatModel: ChatModel) {
         val response = chatModel.call(
             Prompt(
                 prompt,
-                OpenAiChatOptions.builder()
-                    .model("deepseek-chat")
+                ChatOptions.builder()
+                    .model("deepseek-r1:7b")
                     .temperature(0.4)
                     .build()
             )

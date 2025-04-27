@@ -2,9 +2,8 @@ spring:
   application:
     name: spring-ai-erudio-deepseek-ollama
   ai:
-    openai:
-      api-key: ${DEEP_SEEK_API_KEY}
-      base-url: "https://api.deepseek.com"
+    ollama:
+      base-url: http://localhost:11434/
       chat:
         options:
-          model: "deepseek-chat"
+          model: "deepseek-r1:7b"
