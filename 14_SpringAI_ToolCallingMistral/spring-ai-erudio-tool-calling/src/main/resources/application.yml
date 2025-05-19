@@ -2,8 +2,13 @@ spring:
   application:
     name: spring-ai-erudio-tool-calling
   ai:
-    openai:
-      api-key: ${OPEN_AI_API_KEY}
+    ollama:
+      base-url: http://localhost:11434/
+      chat:
+        model: llama3.1:8b
+        # model: mistral:7b
+    # mistralai:
+      #api-key: ${MISTRAL_API_KEY}
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/spring_ai_tool_calling_erudio

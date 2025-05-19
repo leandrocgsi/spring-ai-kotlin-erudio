@@ -33,7 +33,19 @@ class WalletController(
 
         val template = PromptTemplate("""
         What’s the current value in dollars of my wallet based on the latest stock daily prices?
-        To improve readability, add tables and line breaks when deemed necessary.  
+        To improve readability, add tables and line breaks when deemed necessary.
+        You have access to the following tools: "numberOfShares" and "latestStockPrices".
+
+        Task:
+        - Use the tools to calculate the total value of my wallet based on the latest stock daily prices.
+        - Add up the values.
+        - Return ONLY the final formatted result with tables and appropriate line breaks.
+
+        Important:
+        - Do NOT return code.
+        - Do NOT explain.
+        - Do NOT describe how to implement.
+        - ONLY return the final answer in a human-readable format.
         """.trimIndent())
 
         return this.chatClient.prompt(template.create(
@@ -50,7 +62,20 @@ class WalletController(
 
         val template = PromptTemplate("""
         What’s the current value in dollars of my wallet based on the latest stock daily prices?
-        To improve readability, add tables and line breaks when deemed necessary.  
+        To improve readability, add tables and line breaks when deemed necessary.
+        You have access to the following tools: "stockTools" and "walletTools".
+
+        Task:
+        - Use the tools to calculate the total value of my wallet based on the latest stock daily prices.
+        - Add up the values.
+        - Return ONLY the final formatted result with tables and appropriate line breaks.
+        
+        Important:
+        - Do NOT return code.
+        - Do NOT explain.
+        - Do NOT describe how to implement.
+        - ONLY return the final answer in a human-readable format.
+
         """.trimIndent())
 
         return this.chatClient.prompt(template.create())
@@ -65,6 +90,19 @@ class WalletController(
         val template = PromptTemplate("""
         On which day during last $days days my wallet had the highest value in dollars based on the historical daily stock prices?
         To improve readability, add tables and line breaks when deemed necessary.
+        You have access to the following tools: "stockTools" and "walletTools".
+
+        Task:
+        - Use the tools to calculate the total value of my wallet based on the latest stock daily prices.
+        - Add up the values.
+        - Return ONLY the final formatted result with tables and appropriate line breaks.
+        
+        Important:
+        - Do NOT return code.
+        - Do NOT explain.
+        - Do NOT describe how to implement.
+        - ONLY return the final answer in a human-readable format.
+
         """.trimIndent())
 
         return this.chatClient.prompt(template.create())
